@@ -3,5 +3,6 @@
 
 # Except these files
 !.gitignore
+!README.md
 !*/
 !*.m
