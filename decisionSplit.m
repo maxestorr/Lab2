@@ -3,7 +3,7 @@ split1 = []; split1Labels = [];
 split2 = []; split2Labels = [];
 
 for row=1:length(features)
-    if norm(row) < norm(threshold)
+    if norm(features(row)) < norm(threshold)
         split1(end+1) = features(row);
         split1Labels(end+1) = labels(row);
     else
