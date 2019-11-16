@@ -1,4 +1,4 @@
-function [best_attribute, best_threshold] = chooseAttribute(features ,targets)
+function [best_attribute, best_threshold] = chooseAttribute(features, targets)
     maxGain = 0;
     label = targets (:, 1);
     for i = 1:size(features, 2)
