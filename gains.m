@@ -2,16 +2,8 @@ function s = gains(data_column, labels, threshold) % Gain Function
     size = length(labels);
     
     % Sum of "Postive" and "Negative" examples
-    sP = 0;
-    sN = 0;
-    
-    for i = 1:size
-        if labels(i) == 1
-            sP = sP + 1;
-        else
-            sN = sN + 1;
-        end
-    end
+    sP = numel(labels(labels == 1));
+    sN = numel(labels(labels == 0));
     
     s = entropy(sP, sN, size) - remainder(data_column, labels, threshold);
 end
