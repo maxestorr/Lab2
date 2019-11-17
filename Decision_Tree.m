@@ -1,4 +1,4 @@
-function [Tree] = Decision_Tree(DataX,DataY,Labels)
+function [Tree] = Decision_Tree(Features,Labels)
 Tree = struct('op', {}, 'kids', {}, 'class', {}, 'attribute', {}, 'threshold', {}); 
 if size(unique(Labels), 1) == 1
     Tree.op = [];
@@ -9,13 +9,12 @@ if size(unique(Labels), 1) == 1
 else
     %from attribute testing function, need the chosen attribute, its index,
     %the chosen threshold, and the X,Y,L data in the new splits
-    [Attribute, threshold] = attribute_test(DataX,DataY,Labels);
+    [Attribute, threshold,Features1,Features2,Labels1,Labels2] = attribute_test(Features,Labels);
     Tree.op = Attribute;
     Tree.class = [];
     Tree.attribute = Index;
     Tree.threshold = Threshold;
-    [DataX1, DataY1, DataX2, DataY2] = datasplit(DataX, DataY, Attribute, threshold);
-    Tree.kids = {Decision_Tree(DataX1,DataY1,Labels1),Decision_Tree(DataX2,DataY2,Labels2)};
+    Tree.kids = {Decision_Tree(Features1,Labels1),Decision_Tree(Features2,Labels2)};
 end
 
     
