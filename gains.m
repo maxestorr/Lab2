@@ -13,18 +13,17 @@ function s = gains(data_column, labels, threshold) % Gain Function
         end
     end
     
-    s = entropy(sP, sN, size) - remainder(data_column, threshold);
+    s = entropy(sP, sN, size) - remainder(data_column, labels, threshold);
 end
 
-function s = remainder(data_column, threshold) % Remainder Function
+function s = remainder(data_column, labels, threshold) % Remainder Function
     V = length(data_column);
     s1 = 0;
     s2 = 0;
     s = 0;
     
     for i = 1:V
-        [~, ~, split1Labels, split2Labels] = ...
-            decisionSplit(data_column, labels, threshold);
+        [~, ~, split1Labels, split2Labels] = decisionSplit(data_column, labels, threshold);
         
         P1 = numel(split1Labels(split1Labels == 1));
         N1 = numel(split1Labels(split1Labels == 0));
