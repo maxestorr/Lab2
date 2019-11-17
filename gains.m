@@ -1,18 +1,18 @@
-function s = gains(data_column, labels, threshold) % Gain Function
+function gain = gains(data_column, labels, threshold) % Gain Function
     size = length(labels);
     
     % Sum of "Postive" and "Negative" examples
     sP = numel(labels(labels == 1));
     sN = numel(labels(labels == 0));
     
-    s = entropy(sP, sN, size) - remainder(data_column, labels, threshold);
+    gain = entropy(sP, sN, size) - remainder(data_column, labels, threshold);
 end
 
-function s = remainder(data_column, labels, threshold) % Remainder Function
+function remainder = remainder(data_column, labels, threshold) % Remainder Function
     V = length(data_column);
     s1 = 0;
     s2 = 0;
-    s = 0;
+    remainder = 0;
     
     for i = 1:V
         [~, ~, split1Labels, split2Labels] = decisionSplit(data_column, labels, threshold);
@@ -27,12 +27,17 @@ function s = remainder(data_column, labels, threshold) % Remainder Function
 
         s1 = s1 + ((P1 + N1) / V) * entropy(P1, N1, V1);
         s2 = s2 + ((P2 + N2) / V) * entropy(P2, N2, V2);
-        s = s1 + s2;
+        remainder = s1 + s2;
     end
 end
 
-function s = entropy(P, N, size) % Entropy Function
+function entropy = entropy(P, N, size) % Entropy Function
     P = (P / size); % Ratio of + 
     N = (N / size); % Ratio of -
-    s = - P * log2(P) - N * log2(N);
+    
+    if P == 0 || N == 0
+        entropy = 0;
+    else
+        entropy = - P * log2(P) - N * log2(N);
+    end
 end
