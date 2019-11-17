@@ -23,7 +23,8 @@ function s = remainder(data_column, threshold) % Remainder Function
     s = 0;
     
     for i = 1:V
-        [~, ~, split1Labels, split2Labels] = decisionSplit(data_column, threshold);
+        [~, ~, split1Labels, split2Labels] = ...
+            decisionSplit(data_column, labels, threshold);
         
         P1 = numel(split1Labels(split1Labels == 1));
         N1 = numel(split1Labels(split1Labels == 0));
