@@ -13,22 +13,22 @@ function s = gains(data_column, labels, threshold) % Gain Function
         end
     end
     
-    s = I(sP, sN, size) - remainder(A);
+    s = entropy(sP, sN, size) - remainder(data_column, threshold);
 end
 
-function s = remainder(A) % Remainder Function
-    V = length(A);
+function s = remainder(data_column, threshold) % Remainder Function
+    V = length(data_column);
     s = 0;
     
     for i = 1:V
-        P = A(i, 1);
-        N = A(i, 2);
+        P = data_column(i, 1);
+        N = data_column(i, 2);
         
-        s = s + ((P + N) / V) * I(P, N, V);
+        s = s + ((P + N) / V) * entropy(P, N, V);
     end
 end
 
-function s = I(P, N, size) % Entropy Function
+function s = entropy(P, N, size) % Entropy Function
     P = (P / size); % Ratio of + 
     N = (N / size); % Ratio of -
     s = - P * log2(P) - N * log2(N);
