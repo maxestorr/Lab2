@@ -7,10 +7,10 @@ dataSplits.right = []; labels.right = [];
 for row=1:length(dataColumn)
     if dataColumn(row, :) < threshold  % Feature < threshold
         dataSplits.left(end+1, :) = dataColumn(row, :);
-        labels.left(end+1) = labelsColumn(row);
+        labels.left(end+1, :) = labelsColumn(row, :);
     else  % Feature >= threshold
         dataSplits.right(end+1, :) = dataColumn(row, :);
-        labels.right(end+1) = labelsColumn(row);
+        labels.right(end+1, :) = labelsColumn(row, :);
     end
 end
 end
