@@ -14,25 +14,22 @@ function [remainderVal, dataSplits, labels] = remainder(data_column, labels_colu
     V = length(data_column);
     s1 = 0;
     s2 = 0;
-    remainderVal = 0;
     
-    for i = 1:V
-        [dataSplits, labels] = decisionSplit(data_column, labels_column, threshold);
-        
-        % Find number of positive and negative examples in left and right
-        % branches
-        P1 = numel(labels.left(labels.left == 1));
-        N1 = numel(labels.left(labels.left == 0));
-        P2 = numel(labels.right(labels.right == 1));
-        N2 = numel(labels.right(labels.right == 0));
-        
-        V1 = P1 + N1;
-        V2 = P2 + N2;
-
-        s1 = s1 + ((P1 + N1) / V) * entropy(P1, N1, V1);
-        s2 = s2 + ((P2 + N2) / V) * entropy(P2, N2, V2);
-        remainderVal = s1 + s2;
-    end
+    [dataSplits, labels] = decisionSplit(data_column, labels_column, threshold);
+    
+    % Find number of positive and negative examples in left and right
+    % branches
+    P1 = numel(labels.left(labels.left == 1));
+    N1 = numel(labels.left(labels.left == 0));
+    P2 = numel(labels.right(labels.right == 1));
+    N2 = numel(labels.right(labels.right == 0));
+    
+    V1 = P1 + N1;
+    V2 = P2 + N2;
+    
+    s1 = s1 + ((P1 + N1) / V) * entropy(P1, N1, V1);
+    s2 = s2 + ((P2 + N2) / V) * entropy(P2, N2, V2);
+    remainderVal = s1 + s2;
 end
 
 function entropyVal = entropy(P, N, size) % Entropy Function
