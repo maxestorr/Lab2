@@ -11,9 +11,9 @@ else
     %the chosen threshold, and the X,Y,L data in the new splits
     [Attribute, Threshold,dataSplits, labels] = chooseAttribute(Features,Labels);
     if Attribute < 50
-        Tree.op = 'x' + str(Attribute);
+        Tree.op = 'x' + string(Attribute);
     else
-        Tree.op = 'x' + str(Attribute-49);
+        Tree.op = 'x' + string(Attribute-49);
     end
     Tree.op = Attribute;
     Tree.class = [];
