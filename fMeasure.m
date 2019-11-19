@@ -1,4 +1,4 @@
-function fMeasureScore, precisionValue, recallValue = fMeasure(actual, predicted)
+function [fMeasureScore, precisionValue, recallValue] = fMeasure(actual, predicted)
     %Implementing F1 where β = 1
     
     precisionValue = precision(actual, predicted);
