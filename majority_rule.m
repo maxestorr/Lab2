@@ -1,4 +1,4 @@
-function [Label] = majority_rule[Labels]
+function [Label] = majority_rule(Labels)
 Length = length(Labels);
 M0 = 0;
 M1 = 0;
