@@ -25,11 +25,14 @@ function output = precision(actual, predicted)
             else
                 TN = TN + 1;
             end
-        end
-                
-            
+        end 
     end
-    output = TP/(TP + FP);
+    precision = TP/(TP + FP);
+    if(precision == Nan)
+        output = 0;
+    else
+        output = precision;
+    end
 end
 
 function output = recall(actual, predicted)
@@ -54,5 +57,10 @@ function output = recall(actual, predicted)
                 
             
     end
-    output =TP/(TP + FN);
+    recall = TP/(TP + FN);
+    if(recall == Nan)
+        output = 0;
+    else
+        output = recall;
+    end
 end
