@@ -1,10 +1,10 @@
-function output = fMeasure(actual, predicted)
+function fMeasureScore, precisionValue, recallValue = fMeasure(actual, predicted)
     %Implementing F1 where β = 1
     
     precisionValue = precision(actual, predicted);
     recallValue = recall(actual, predicted);
     
-    output = 2 * ((precisionValue * recallValue) / (precisionValue + recallValue));
+    fMeasureScore = 2 * ((precisionValue * recallValue) / (precisionValue + recallValue));
 end
 
 function output = precision(actual, predicted)
