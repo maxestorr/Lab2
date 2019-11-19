@@ -1,4 +1,4 @@
-function [best_attribute, best_threshold, bestSplit, bestLabels] = chooseAttribute(features, targets)
+function [best_attribute, best_threshold] = chooseAttribute(features, targets)
     maxGain = 0;
     label = targets(:, 1);
     for i = 1:length(features(1,:))
@@ -10,14 +10,12 @@ function [best_attribute, best_threshold, bestSplit, bestLabels] = chooseAttribu
         step = (maxValue - minValue) / 98;
         
         for j = minValue:step:maxValue
-            [gainValue, dataSplit, labels] = gains(features, usingColumn, label, j);
+            [gainValue] = gains(features, usingColumn, label, j);
             
             if gainValue > maxGain
                 maxGain = gainValue
                 best_attribute = i;
                 best_threshold = j;
-                bestSplit = dataSplit;
-                bestLabels = labels;
             end
         end
     end

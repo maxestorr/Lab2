@@ -1,4 +1,4 @@
-function [gain, dataSplits, labels] = gains(data, column, labels_column, threshold) % Gain Function
+function [gain] = gains(data, column, labels_column, threshold) % Gain Function
     size = length(labels_column);
     
     % Sum of "Postive" and "Negative" examples
@@ -6,7 +6,7 @@ function [gain, dataSplits, labels] = gains(data, column, labels_column, thresho
     sN = numel(labels_column(labels_column == 0));
     
     entropyVal = entropy(sP, sN, size);
-    [remainderVal, dataSplits, labels] = remainder(data, column, labels_column, threshold);
+    [remainderVal] = remainder(data, column, labels_column, threshold);
     gain = entropyVal - remainderVal;
 end
 
@@ -15,14 +15,7 @@ function [remainderVal, dataSplits, labels] = remainder(data, column, labels_col
     s1 = 0;
     s2 = 0;
     
-    [dataSplits, labels] = decisionSplit(data,column, labels_column, threshold);
-    
-    % Find number of positive and negative examples in left and right
-    % branches
-    P1 = numel(labels.left(labels.left == 1));
-    N1 = numel(labels.left(labels.left == 0));
-    P2 = numel(labels.right(labels.right == 1));
-    N2 = numel(labels.right(labels.right == 0));
+    [P1,N1,P2,N2] = fast_splits(column,labels_column,threshold);
     
     V1 = P1 + N1;
     V2 = P2 + N2;

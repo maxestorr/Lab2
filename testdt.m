@@ -1,6 +1,6 @@
 function predictions = testdt(tree, testfeatures)
     %create array of 0s for tests
-    predictions = zeros(length(testfeatures));
+    predictions = zeros(length(testfeatures),1);
      for i = 1 : length(testfeatures)
         
         leaf = tree;
@@ -12,7 +12,6 @@ function predictions = testdt(tree, testfeatures)
                 leaf = leaf.kids{2};
             end
         end
-        predictions(i) = leaf.class;
+        predictions(i,1) = leaf.class;
     end
 end
-
