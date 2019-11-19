@@ -6,12 +6,12 @@ function [gain, dataSplits, labels] = gains(data, column, labels_column, thresho
     sN = numel(labels_column(labels_column == 0));
     
     entropyVal = entropy(sP, sN, size);
-    [remainderVal, dataSplits, labels] = remainder(data, column, labels_column, threshold);
+    [remainderVal, dataSplits, labels] = remainder(data, column, labels_column, t;
     gain = entropyVal - remainderVal;
 end
 
 function [remainderVal, dataSplits, labels] = remainder(data, column, labels_column, threshold)
-    V = length(labels_column);
+    V = length(label_column);
     s1 = 0;
     s2 = 0;
     
