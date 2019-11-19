@@ -1,6 +1,5 @@
 function [Tree] = Decision_Tree(Features,Labels)
 Tree = struct('op', {}, 'kids', {}, 'class', {}, 'attribute', {}, 'threshold', {}); 
-size(unique(Labels),1)
 if size(unique(Labels(:,1)), 1) == 1
     Tree(1).op = [];
     Tree(1).kids = [];

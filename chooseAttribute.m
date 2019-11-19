@@ -1,8 +1,7 @@
 function [best_attribute, best_threshold] = chooseAttribute(features, targets)
     maxGain = 0;
-    label = targets(:, 1);
+    label = targets(:);
     for i = 1:length(features(1,:))
-        i
         usingColumn = features(:,i);
         
         minValue = min(usingColumn);
