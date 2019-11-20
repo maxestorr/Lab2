@@ -15,7 +15,7 @@ else
     else
         out_string = 'y'+string(Attribute-49)+'>'+string(Threshold);
     end
-    Tree(1).op = out_string;
+    Tree(1).op = out_string; 
     Tree(1).class = [];
     Tree(1).attribute = Attribute;
     Tree(1).threshold = Threshold;

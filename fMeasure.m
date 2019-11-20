@@ -17,11 +17,11 @@ function output = precision(actual, predicted)
             if predicted(i) == 1
                 TP = TP + 1;
             else
-                FP = FP + 1;
+                FN = FN + 1;
             end
         else
             if predicted(i) == 1
-                FN = FN +1;
+                FP = FP +1;
             else
                 TN = TN + 1;
             end
