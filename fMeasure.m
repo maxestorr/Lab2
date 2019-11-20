@@ -1,10 +1,10 @@
-function output = fMeasure(actual, predicted)
+function [fMeasureScore, precisionValue, recallValue] = fMeasure(actual, predicted)
     %Implementing F1 where β = 1
     
     precisionValue = precision(actual, predicted);
     recallValue = recall(actual, predicted);
     
-    output = 2 * ((precisionValue * recallValue) / (precisionValue + recallValue));
+    fMeasureScore = 2 * ((precisionValue * recallValue) / (precisionValue + recallValue));
 end
 
 function output = precision(actual, predicted)
@@ -17,19 +17,22 @@ function output = precision(actual, predicted)
             if predicted(i) == 1
                 TP = TP + 1;
             else
-                FP = FP + 1;
+                FN = FN + 1;
             end
         else
             if predicted(i) == 1
-                FN = FN +1;
+                FP = FP +1;
             else
                 TN = TN + 1;
             end
-        end
-                
-            
+        end 
     end
-    output = TP/(TP + FP);
+    precision = TP/(TP + FP);
+    if(isnan(precision))
+        output = 0;
+    else
+        output = precision;
+    end
 end
 
 function output = recall(actual, predicted)
@@ -54,5 +57,10 @@ function output = recall(actual, predicted)
                 
             
     end
-    output =TP/(TP + FN);
+    recall = TP/(TP + FN);
+    if(isnan(recall))
+        output = 0;
+    else
+        output = recall;
+    end
 end
