@@ -1,4 +1,4 @@
-function [gain] = gains(data, column, labels_column, threshold)
+function gain = gains(data, column, labels_column, threshold)
     size = length(labels_column);
     
     % Sum of "Postive" and "Negative" examples
