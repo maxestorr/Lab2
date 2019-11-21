@@ -4,8 +4,8 @@ clc;
 
 [features, labels] = get_data();
 
-%features = features(1:1000, :);
-%labels = labels(1:1000, :);
+features = features(1:1000, :);
+labels = labels(1:1000, :);
 
 k_sliceNum = 10;
 kslices = cvpartition(size(features, 1), 'KFold', k_sliceNum);

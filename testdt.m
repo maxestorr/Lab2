@@ -1,10 +1,8 @@
 function predictions = testdt(tree, testfeatures)
-    %create array of 0s for tests
-    predictions = zeros(length(testfeatures),1);
-     for i = 1 : length(testfeatures)
-        
-        leaf = tree;
-        
+     %Create array of 0s for tests
+     predictions = zeros(length(testfeatures),1);
+     for i = 1 : length(testfeatures) 
+        leaf = tree;       
         while isempty(leaf.class)
             if testfeatures(i, leaf.attribute) < leaf.threshold
                 leaf = leaf.kids{1};
@@ -12,6 +10,6 @@ function predictions = testdt(tree, testfeatures)
                 leaf = leaf.kids{2};
             end
         end
-        predictions(i,1) = leaf.class;
+        predictions(i) = leaf.class;
     end
 end
