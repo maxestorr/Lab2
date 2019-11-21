@@ -1,4 +1,6 @@
 function [Label] = majority_rule(Labels)
+% Function calculates how many members of each class are in the dataset.
+% This doesn't do much work in the current code, but could be usefully expanded for a multiclass problem
 Length = length(Labels);
 M0 = 0;
 M1 = 0;
