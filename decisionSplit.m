@@ -1,6 +1,6 @@
 function [dataSplits, labels] = decisionSplit(data, column, labelsColumn, threshold)
-% Create structs to contain splits and labels for left and right branches
-% of the current node.
+% Create structs to contain datapoints and labels for left and right
+% branches of the current node.
 dataSplits.left = []; labels.left = [];
 dataSplits.right = []; labels.right = [];
 
