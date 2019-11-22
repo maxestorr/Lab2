@@ -1,17 +1,21 @@
 function predictions = testdt(tree, testfeatures)
-    %create array of 0s for tests
-    predictions = zeros(length(testfeatures),1);
-     for i = 1 : length(testfeatures)
+     %Create array of 0s for predictions to write to 
+     predictions = zeros(length(testfeatures),1);
+     
+     % iterate through samples for predictions
+     for i = 1 : length(testfeatures) 
+        % reset the node for next sample 
+        treeNode = tree;       
         
-        leaf = tree;
-        
-        while isempty(leaf.class)
-            if testfeatures(i, leaf.attribute) < leaf.threshold
-                leaf = leaf.kids{1};
+        while isempty(treeNode.class)
+            % checks node's threshold and classifies it into 1 of 2 groups
+            if testfeatures(i, treeNode.attribute) < treeNode.threshold
+                treeNode = treeNode.kids{1};
             else
-                leaf = leaf.kids{2};
+                treeNode = treeNode.kids{2};
             end
         end
-        predictions(i,1) = leaf.class;
+        %add to predictions
+        predictions(i) = treeNode.class;
     end
 end
